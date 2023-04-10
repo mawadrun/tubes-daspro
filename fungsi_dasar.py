@@ -62,3 +62,25 @@ if __name__ == "__main__": # buat coba2
     for i in range(len(string3lines)):
         string3final = appendList(strSplit(string3lines[i], " "), string3final)
     print(string3final)
+
+
+    
+# Temporary Function (Nantinya bakal diimplementasikan/menggunakan fungsi diatas)
+# Fungsi menentukan banyak tipe data dalam 1 baris
+def type_(x):                           
+    count = 1
+    for i in range(len(x)):
+        if x[i] == ';':
+            count+=1
+    return count
+
+# Fungsi Memotong baris menjadi array
+def split(x):                           
+    i = 0
+    split_user = ['' for i in range(type_(x))]
+    for j in range(len(x)):
+        if x[j] != ";":
+            split_user[i] += x[j]
+        else:
+              i += 1 
+    return split_user
