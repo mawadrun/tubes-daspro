@@ -10,7 +10,7 @@ def login():
     for line in baris_user:
         #Agar Baris pertama dalam file tidak di baca
         if line != baris_user[0]:       
-            user = split(line)
+            user = fd.split(line)
             if user[0] == username:
                 if user[1] == password:
                     print(f"Selamat Datang,{username} !")
