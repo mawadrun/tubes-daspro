@@ -1,5 +1,6 @@
 import fungsi_dasar as fd
 
+# Fungsi Login
 def login():
     global username                        
     file = open('user.csv','r')
