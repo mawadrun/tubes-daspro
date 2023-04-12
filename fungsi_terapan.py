@@ -3,7 +3,7 @@ import fungsi_dasar as fd
 # Fungsi Login
 def login():
     global username                        
-    file = open('user.csv','r')
+    file = open('./csv/user.csv','r')
     baris_user = file.readlines()
     username = input("Username: ")
     password = input("Password: ")

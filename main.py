@@ -3,21 +3,19 @@ import fungsi_terapan as ft
 
 # Program Utama
 status = False              # Penanda awal bahwa belum login
+username = "none"
 def menu():
     global status
+    global username
     pilihan = input()
     if pilihan == 'login':
         if status == False:
-            if ft.login() == True:
-                status = True
-            else:
-                status = False
+            status = ft.login()
         else:
-            print(f'Login gagal!\n Anda telah login dengan username {username}, silahkan lakukan “logout” sebelum melakukan login kembali.')
-        menu()
+            print(f'Login gagal!\n Anda telah login dengan username {username}, silahkan lakukan “logout” sebelum melakukan login kembali.') # Ide: fungsi login() dibuat menjadi return username
     elif pilihan == 'logout':
         ft.logout()
-        menu()
 
 # Memanggil/Memulai Program
-menu()
+while True:
+    menu()
