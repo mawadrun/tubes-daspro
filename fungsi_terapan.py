@@ -10,7 +10,7 @@ def login():
     for line in baris_user:
         #Agar Baris pertama dalam file tidak di baca
         if line != baris_user[0]:       
-            user = fd.split(line)
+            user = fd.split(line, ';')
             if user[0] == username:
                 if user[1] == password:
                     print(f"Selamat Datang,{username} !")
@@ -22,13 +22,12 @@ def login():
     return False
 
 # Fungsi Logout
-def logout():
+def logout(status):
     # Status sebagai penanda apakah sudah login atau belum
-    global status
     if status == True:
-        status = False
+        return False
     else:
-        print('Login gagal!\n Anda belum login, silahkan login terlebih dahulu sebelum melakukan logout.')
+        print('Logout gagal!\n Anda belum login, silahkan login terlebih dahulu sebelum melakukan logout.')
 
 # Fungsi username
 def username_():

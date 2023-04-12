@@ -12,7 +12,7 @@ def menu():
         else:
             print(f'Login gagal!\n Anda telah login dengan username {ft.username_()}, silahkan lakukan “logout” sebelum melakukan login kembali.') # Ide: fungsi login() dibuat menjadi return username
     elif pilihan == 'logout':
-        ft.logout()
+        status = ft.logout(status)
 
 # Memanggil/Memulai Program
 while True:
