@@ -29,3 +29,8 @@ def logout():
         status = False
     else:
         print('Login gagal!\n Anda belum login, silahkan login terlebih dahulu sebelum melakukan logout.')
+
+# Fungsi username
+def username_():
+    global username
+    return username
