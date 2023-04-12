@@ -114,19 +114,19 @@ def matrixRank(matrix, column):
 
 # Temporary Function (Nantinya bakal diimplementasikan/menggunakan fungsi diatas)
 # Fungsi menentukan banyak tipe data dalam 1 baris
-def type_(x):                           
+def type_(x, seperator):                           
     count = 1
     for i in range(len(x)):
-        if x[i] == ';':
+        if x[i] == seperator:
             count+=1
     return count
 
 # Fungsi Memotong baris menjadi array
-def split(x):                           
+def split(x, seperator):                           
     i = 0
-    split_user = ['' for i in range(type_(x))]
+    split_user = ['' for i in range(type_(x, seperator))]
     for j in range(len(x)):
-        if x[j] != ";":
+        if x[j] != seperator:
             split_user[i] += x[j]
         else:
               i += 1 
