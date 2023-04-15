@@ -3,7 +3,6 @@ import F01 as f1
 
 # Summon Jin                #Note Username belum di test
 def summonjin(data_user):
-    global username
     Validjenis = False
     Validuser = False
     Validpass = False
