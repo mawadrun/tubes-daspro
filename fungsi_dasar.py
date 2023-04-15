@@ -11,6 +11,15 @@ def strLen(string):
     
     return i
 
+def strInsert(string, char, index):
+    newstring = ""
+    for i in range(index):
+        newstring += string[i]
+    newstring += char
+    for i in range(index+1, strLen(string)+1):
+        newstring += string[i-1]
+    return newstring
+
 def strSplit(string, separator):
 # membagi string menjadi list dengan pebagi separator
     newlist = []
@@ -67,6 +76,7 @@ def appendList(element, list):
     return newlist
 
 def delList(element, list):
+# menghasilkan list baru, yaitu list awal dengan elemen "element" dihapus
     newlist = ["" for i in range(listLen(list))]
     found = 0
     for i in range(listLen(list)):
@@ -130,7 +140,7 @@ def matrixCount(matrix, column, criteria):
             n += 1
     return n
 
-def matrixRank(matrix, column):
+def matrixRankData(matrix, column, mode):
 # menghitung jumlah kemunculan suatu nilai pada column, lalu mengurutkannya dari yang terbesar
 # hasil return matriks dengan elemen list [data, jumlah kemunculan] untuk setiap data
     r = []
@@ -143,37 +153,26 @@ def matrixRank(matrix, column):
             r = appendList(lastdata, r)
             lastdata = [sortedMatrix[i][column], 1]
     r = appendList(lastdata, r)
-    return matrixSort(r, 1, 'd')
 
-# NOTE TO SELF: dua fungsi di bawah ini sebaiknya dipindah ke fungsi_terapan.py
-
-def matrixMinLexic(matrix, column):
-# mengambil data dengan kemunculan terbanyak pada column
-# jika ada lebih dari satu, ambil yang urutan leksikografis terendah
-    ranked = matrixRank(matrix, column)
-    nTop = 1
-    top = ranked[0][1]
-    for i in range(1, listLen(ranked)):
-        if ranked[i][1] == top:
-            nTop += 1
-        else:
-            top = ranked[i][1]
-    return matrixSort(sliceList(ranked, 0, nTop), 0, 'a')[0][0]
-
-def matrixMaxLexic(matrix, column): # MUNGKIN BUGGY, MAGER MERIKSA
-# mengambil data dengan kemunculan sedikit pada column
-# jika ada lebih dari satu, ambil yang urutan leksikografis tertinggi
-    ranked = matrixRank(matrix, column)
-    nTop = 1
-    top = ranked[listLen(ranked)-1][1]
-    for i in range(listLen(ranked)-1, 0, -1):
-        if ranked[i][1] == top:
-            nTop += 1
-        else:
-            top = ranked[i][1]
-    return matrixSort(sliceList(ranked, 0, nTop), 0, 'd')[0][0]
-
-
+    if mode == 'd':
+        return matrixSort(r, 1, 'd')
+    elif mode == 'a':
+        return matrixSort(r, 1, 'a')
+    else:
+        return 0
+    
+def matrixIndexOf(matrix, column, element):
+# mengembalikan indeks kemunculan pertama element pada column dari matriks
+    for i in range(listLen(matrix)):
+        if matrix[i][column] == element:
+            return i
+        
+def matrixColumnSum(matrix, column):
+# menghitung jumlah total column dari sebuah matriks
+    s = 0
+    for i in range(listLen(matrix)):
+        s += int(matrix[i][column])
+    return s
 
 # Temporary Function (Nantinya bakal diimplementasikan/menggunakan fungsi diatas)
 # Fungsi menentukan banyak tipe data dalam 1 baris
@@ -196,12 +195,9 @@ def split(x, seperator):
     return split_user
 
 if __name__ == "__main__": # buat coba2
-    loi = [32, 42, 6, 23, 42, 99, 32, 34, 321, 32]
-    print(loi)
-    k = listSort(loi,'a')
-    print(loi)
-    print(k)
-    print(delList(32, loi))
+    lio = [1, 2, 3, 4, 5]
+    lio = delList(5, lio)
+    print(lio)
 
 
     

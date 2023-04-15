@@ -1,8 +1,16 @@
 import fungsi_dasar as fd
 import fungsi_terapan as ft
 
-# Matriks user (Matriks Dummy)
-data_user = [['' for i in range(3)] for j in range(102)]
+from F09 import main as laporanjin
+from F10 import main as laporancandi
+from F11 import main as hancurkancandi
+from F12 import main as ayamberkokok
+from F13 import main as load
+
+# Pembacaan data
+data_user = load("./csv/user.csv")
+data_candi = load("./csv/candi.csv")
+data_bahan = load("./csv/bahan_bangunan.csv")
 
 # Program Utama
 status = False              # Penanda awal bahwa belum login
@@ -30,14 +38,15 @@ def menu():
     while role == 'bandung':
         bandungmenu()
     
+    
 # Menu bila role Bandung (print di fungsi ini hanya untuk pengetesan)
 def bandungmenu():
     global role
-    global data_user
+    global data_user, data_bahan, data_candi
     pilihan = input()
     if pilihan == 'help':
         print('---------Menu Role Bandung---------')
-        print('Summon Jin  (summonjin)\nHilangkan Jin  (hapusjin)\nUbah Tipe Jin  (ubahjin)')
+        print('Summon Jin  (summonjin)\nHilangkan Jin  (hapusjin)\nUbah Tipe Jin  (ubahjin)\nAmbil Laporan Jin (laporanjin)\nAmbil Laporan Candi (laporancandi)')
     elif pilihan == 'summonjin':
         data_user = ft.summonjin(data_user)
         print(data_user)
@@ -47,8 +56,21 @@ def bandungmenu():
     elif pilihan == 'ubahjin':
         data_user = ft.ubahjin(data_user)
         print(data_user)
+    elif pilihan == 'laporanjin':
+        laporanjin(data_user, data_candi, data_bahan)
+    elif pilihan == 'laporancandi':
+        laporancandi(data_candi)
     elif pilihan == 'logout':
         role = ''
+
+def roromenu():
+    global role
+    global data_user, data_bahan, data_candi
+    pilihan = input()
+    if pilihan == 'hancurkancandi':
+        data_candi = hancurkancandi(data_candi)
+    elif pilihan == 'ayamberkokok':
+        ayamberkokok(data_candi)
 
 # Memanggil/Memulai Program
 while True:
