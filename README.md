@@ -9,4 +9,4 @@ perlu dites apakah betul outputnya sesuai ketentuan leksiografis di soal
 ### F12
 keluar program
 
-Last change 11-04-2023 12.38 PM
+Last change 15-04-2023 09:24 AM
