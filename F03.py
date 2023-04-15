@@ -1,7 +1,7 @@
 import fungsi_dasar as fd
+import F01 as f1
 
-
-# Summon Jin                #Note Username belum bisa
+# Summon Jin                #Note Username belum di test
 def summonjin(data_user):
     global username
     Validjenis = False
@@ -42,7 +42,7 @@ def summonjin(data_user):
                 Validpass = True
         return popjin(data_user, username_jin, password_jin, jenis)
     else:
-        print(f'Jumlah Jin telah maksimal! (100 jin). {username} tidak dapat men-summon lebih dari itu')
+        print(f'Jumlah Jin telah maksimal! (100 jin). {f1.username_()} tidak dapat men-summon lebih dari itu')
         return data_user
 
 ## Fungsi pendamping

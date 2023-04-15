@@ -15,7 +15,6 @@ from F13 import main as load
 data_user = load("./csv/user.csv")
 data_candi = load("./csv/candi.csv")
 data_bahan = load("./csv/bahan_bangunan.csv")
-print(data_user)
 
 # Program Utama
 status = False              # Penanda awal bahwa belum login
