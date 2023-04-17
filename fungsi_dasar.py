@@ -37,7 +37,20 @@ def strSplit(string, separator):
     newlist = appendList(sect, newlist)
     return newlist
 
+# ============= FUNGSI INTEGER ========== #
+def lcgRandom(seed):
+    x = seed
+    a = 1664525
+    c = 1013904223
+    m = 2**32
+    tri = [0, 0, 0]
 
+    for i in range(3):
+        x = ((a * x) + c) % m
+        tri[i] = x%6
+    
+    print(tri)
+    return tri[0], tri[1], tri[2]
 
 # ============= FUNGSI LIST ============= #
 
@@ -55,10 +68,13 @@ def listLen(list):
         
         list[-1] = temp # kemalikan elemen terakhir ke nilai aslinya
         return i + 1
+
+
 def copyList(list): 
 # menyalin list
     newlist = [list[i] for i in range(listLen(list))]
     return newlist
+
 
 def sliceList(list, imin, imax):
 # mengambil sublist dari list (perilaku sama seperti list slicing, list[imin:imax:])
@@ -67,6 +83,7 @@ def sliceList(list, imin, imax):
         newlist[i-imin] = list[i]
     return newlist
 
+
 def appendList(element, list):
 # menaruh element pada ujung list. penggunaan: listBaru = appendList(elemenBaru, listLama)
     newlist = ["" for i in range(listLen(list)+1)]
@@ -74,6 +91,7 @@ def appendList(element, list):
         newlist[i] = list[i]
     newlist[-1] = element
     return newlist
+
 
 def delList(element, list):
 # menghasilkan list baru, yaitu list awal dengan elemen "element" dihapus
@@ -85,6 +103,7 @@ def delList(element, list):
         else:
             found += 1
     return sliceList(newlist, 0, listLen(newlist)-found)
+
 
 def listSort(list, mode):
 # mengurutkan elemen pada list (insertion sort)
@@ -140,6 +159,7 @@ def matrixCount(matrix, column, criteria):
             n += 1
     return n
 
+
 def matrixRankData(matrix, column, mode):
 # menghitung jumlah kemunculan suatu nilai pada column, lalu mengurutkannya dari yang terbesar
 # hasil return matriks dengan elemen list [data, jumlah kemunculan] untuk setiap data
@@ -161,18 +181,21 @@ def matrixRankData(matrix, column, mode):
     else:
         return 0
     
+
 def matrixIndexOf(matrix, column, element):
 # mengembalikan indeks kemunculan pertama element pada column dari matriks
     for i in range(listLen(matrix)):
         if matrix[i][column] == element:
             return i
-        
+
+ 
 def matrixColumnSum(matrix, column):
 # menghitung jumlah total column dari sebuah matriks
     s = 0
     for i in range(listLen(matrix)):
         s += int(matrix[i][column])
     return s
+
 
 # Temporary Function (Nantinya bakal diimplementasikan/menggunakan fungsi diatas)
 # Fungsi menentukan banyak tipe data dalam 1 baris
@@ -182,6 +205,7 @@ def type_(x, seperator):
         if x[i] == seperator:
             count+=1
     return count
+
 
 # Fungsi Memotong baris menjadi array
 def split(x, seperator):                           

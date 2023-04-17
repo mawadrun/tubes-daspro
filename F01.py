@@ -17,7 +17,7 @@ def login():
             if user[0] == username:
                 if user[1] == password:
                     role = fd.split(user[2],'_')
-                    print(f"Selamat Datang,{username} !")
+                    print(f"Selamat Datang,{username}!")
                     return True
                 else:
                     print("Password Salah!")
@@ -34,4 +34,10 @@ def username_():
 # Fungsi menentukan role
 def role_():
     global role
-    return role[0]
+    # Kalo password salah role jadi error
+    if role[0] == "jin":
+        # mendapatkan tipe jin, hilangkan \n
+        temprole = fd.split(role[1], '\n')
+        return temprole[0]
+    else:
+        return role[0]

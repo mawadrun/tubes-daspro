@@ -1,3 +1,4 @@
+import time
 import fungsi_dasar as fd
 
 import F01 as f1
@@ -5,6 +6,8 @@ import F02 as f2
 import F03 as f3
 import F04 as f4
 import F05 as f5
+import F06 as f6
+import F07 as f7
 from F09 import main as laporanjin
 from F10 import main as laporancandi
 from F11 import main as hancurkancandi
@@ -19,6 +22,8 @@ data_bahan = load("./csv/bahan_bangunan.csv")
 # Program Utama
 status = False              # Penanda awal bahwa belum login
 role = ''             
+candi = 0
+
 def menu():
     global role
     global status
@@ -41,6 +46,11 @@ def menu():
     # Memanggil menu bandung
     while role == 'bandung':
         bandungmenu()
+    # Memanggil menu jin pengumpul
+    while role == 'pengumpul':
+        pengumpulMenu()
+    while role == 'pembangun':
+        pembangunMenu()
     
     
 # Menu bila role Bandung (print di fungsi ini hanya untuk pengetesan)
@@ -69,6 +79,7 @@ def bandungmenu():
     elif pilihan == 'login':
         print(f'Login gagal!\n Anda telah login dengan username {f1.username_()}, silahkan lakukan “logout” sebelum melakukan login kembali.')
 
+
 def roromenu():
     global role
     global data_user, data_bahan, data_candi
@@ -77,6 +88,40 @@ def roromenu():
         data_candi = hancurkancandi(data_candi)
     elif pilihan == 'ayamberkokok':
         ayamberkokok(data_candi)
+
+# Menu akses jin
+def pengumpulMenu():
+    pilihan = input()
+    if pilihan == "kumpul":
+        # Kalau mau buat undo ini nanti masukin seedKumpul ke stack
+        seedKumpul = int(time.time())
+        pasir, batu, air = f7.kumpul(seedKumpul)
+        # Tambahkan ke persediaan
+        data_bahan[0][2] = str(int(data_bahan[0][2]) + pasir)
+        data_bahan[1][2] = str(int(data_bahan[1][2]) + batu)
+        data_bahan[2][2] = str(int(data_bahan[2][2]) + air)
+
+def pembangunMenu():
+    global candi
+    pilihan = input()
+    if pilihan == "bangun":
+        # Kalau mau buat undo ini nanti masukin seedBangun ke stack
+        seedBangun = int(time.time())
+        pasir, batu, air = f6.bangun(seedBangun)
+        # Cek Persediaan:
+        if (int(data_bahan[0][2]) >= pasir) and (int(data_bahan[1][2]) >= batu) and (int(data_bahan[2][2]) >= air):
+            # Kurangi Persediaan
+            data_bahan[0][2] = str(int(data_bahan[0][2]) - pasir)
+            data_bahan[1][2] = str(int(data_bahan[1][2]) - batu)
+            data_bahan[2][2] = str(int(data_bahan[2][2]) - air)
+            if candi < 100:
+                candi += 1
+            print('Candi berhasil dibangun.')
+            print("Sisa candi yang perlu dibangun {}".format(100-candi))
+        else:
+            print('Bahan bangunan tidak mencukupi.')
+            print('Candi tidak bisa dibangun!')
+
 
 # Memanggil/Memulai Program
 while True:
