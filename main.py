@@ -8,6 +8,7 @@ import F04 as f4
 import F05 as f5
 import F06 as f6
 import F07 as f7
+import F08 as f8
 from F09 import main as laporanjin
 from F10 import main as laporancandi
 from F11 import main as hancurkancandi
@@ -22,7 +23,6 @@ data_bahan = load("./csv/bahan_bangunan.csv")
 # Program Utama
 status = False              # Penanda awal bahwa belum login
 role = ''             
-candi = 0
 
 def menu():
     global role
@@ -70,6 +70,13 @@ def bandungmenu():
     elif pilihan == 'ubahjin':
         data_user = f5.ubahjin(data_user)
         print(data_user)
+    elif pilihan == "batchkumpul":
+        pasir, batu, air = f8.batchkumpul(data_user)
+        data_bahan[0][2] = str(int(data_bahan[0][2]) + pasir)
+        data_bahan[1][2] = str(int(data_bahan[1][2]) + batu)
+        data_bahan[2][2] = str(int(data_bahan[2][2]) + air)
+    elif pilihan == "batchbangun":
+        data_bahan, data_candi = f8.batchbangun(data_user, data_bahan, data_candi)
     elif pilihan == 'laporanjin':
         laporanjin(data_user, data_candi, data_bahan)
     elif pilihan == 'laporancandi':
@@ -78,6 +85,12 @@ def bandungmenu():
         role = ''
     elif pilihan == 'login':
         print(f'Login gagal!\n Anda telah login dengan username {f1.username_()}, silahkan lakukan “logout” sebelum melakukan login kembali.')
+    elif pilihan == 'cek':
+        print(data_user)
+        print(data_bahan)
+        print(data_candi)
+    else:
+        print('ini Help')
 
 
 def roromenu():
@@ -86,41 +99,36 @@ def roromenu():
     pilihan = input()
     if pilihan == 'hancurkancandi':
         data_candi = hancurkancandi(data_candi)
-    elif pilihan == 'ayamberkokok':
+    if pilihan == 'ayamberkokok':
         ayamberkokok(data_candi)
+
 
 # Menu akses jin
 def pengumpulMenu():
+    global role
     pilihan = input()
     if pilihan == "kumpul":
-        # Kalau mau buat undo ini nanti masukin seedKumpul ke stack
-        seedKumpul = int(time.time())
-        pasir, batu, air = f7.kumpul(seedKumpul)
+        pasir, batu, air = f7.kumpul()
+        print("Jin menemukan {} pasir, {} batu, dan {} air.".format(pasir, batu, air))
         # Tambahkan ke persediaan
         data_bahan[0][2] = str(int(data_bahan[0][2]) + pasir)
         data_bahan[1][2] = str(int(data_bahan[1][2]) + batu)
         data_bahan[2][2] = str(int(data_bahan[2][2]) + air)
+    if pilihan == 'cek':
+        print(data_user)
+        print(data_bahan)
+        print(data_candi)
+
 
 def pembangunMenu():
-    global candi
+    global data_candi, data_bahan
     pilihan = input()
     if pilihan == "bangun":
-        # Kalau mau buat undo ini nanti masukin seedBangun ke stack
-        seedBangun = int(time.time())
-        pasir, batu, air = f6.bangun(seedBangun)
-        # Cek Persediaan:
-        if (int(data_bahan[0][2]) >= pasir) and (int(data_bahan[1][2]) >= batu) and (int(data_bahan[2][2]) >= air):
-            # Kurangi Persediaan
-            data_bahan[0][2] = str(int(data_bahan[0][2]) - pasir)
-            data_bahan[1][2] = str(int(data_bahan[1][2]) - batu)
-            data_bahan[2][2] = str(int(data_bahan[2][2]) - air)
-            if candi < 100:
-                candi += 1
-            print('Candi berhasil dibangun.')
-            print("Sisa candi yang perlu dibangun {}".format(100-candi))
-        else:
-            print('Bahan bangunan tidak mencukupi.')
-            print('Candi tidak bisa dibangun!')
+        data_bahan, data_candi = f6.bangun(data_bahan, data_candi)
+    if pilihan == 'cek':
+        print(data_user)
+        print(data_bahan)
+        print(data_candi)
 
 
 # Memanggil/Memulai Program

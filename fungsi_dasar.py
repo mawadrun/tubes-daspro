@@ -1,3 +1,4 @@
+import time
 
 # ============= FUNGSI STRING ============= #
 
@@ -38,8 +39,8 @@ def strSplit(string, separator):
     return newlist
 
 # ============= FUNGSI INTEGER ========== #
-def lcgRandom(seed):
-    x = seed
+def lcgRandom():
+    x = int(time.time())
     a = 1664525
     c = 1013904223
     m = 2**32
@@ -49,7 +50,6 @@ def lcgRandom(seed):
         x = ((a * x) + c) % m
         tri[i] = x%6
     
-    print(tri)
     return tri[0], tri[1], tri[2]
 
 # ============= FUNGSI LIST ============= #
@@ -215,7 +215,7 @@ def split(x, seperator):
         if x[j] != seperator:
             split_user[i] += x[j]
         else:
-              i += 1 
+            i += 1 
     return split_user
 
 if __name__ == "__main__": # buat coba2

@@ -1,6 +1,5 @@
 import fungsi_dasar as fd
 
-def kumpul(seed):
-    pasir, batu, air = fd.lcgRandom(seed)
-    print("Jin menemukan {} pasir, {} batu, dan {} air.".format(pasir, batu, air))
+def kumpul():
+    pasir, batu, air = fd.lcgRandom()
     return pasir, batu, air
