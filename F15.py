@@ -1,3 +1,4 @@
+import os
 def toCSV(filename,A):
   x=""
   for C in A:
@@ -12,4 +13,8 @@ def toCSV(filename,A):
   f.write(x)
   f.close
     
+def save():
+  folder=input("Masukkan nama folder:")
+  
+
 
