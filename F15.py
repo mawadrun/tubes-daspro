@@ -1,5 +1,5 @@
 import os
-def toCSV(filename,A):
+def Savefile(filename,A):
   x=""
   for C in A:
     i=0
@@ -23,9 +23,9 @@ def save():
   else:
     os.makedirs('save')
     
-  toCSV(f"save/{folder}/users.csv",namamatriks)
-  toCSV(f"save/{folder}/bahan_bangunan.csv",)
-  toCSV(f"save/{folder}/candi.csv",)
+ Savefile(f"save/{folder}/users.csv",namamatriks)
+ Savefile(f"save/{folder}/bahan_bangunan.csv",)
+ Savefile(f"save/{folder}/candi.csv",)
   
   
   
