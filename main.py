@@ -55,6 +55,7 @@ def menu():
     
 # Menu bila role Bandung (print di fungsi ini hanya untuk pengetesan)
 def bandungmenu():
+    global status
     global role
     global data_user, data_bahan, data_candi
     pilihan = input()
@@ -83,6 +84,7 @@ def bandungmenu():
         laporancandi(data_candi)
     elif pilihan == 'logout':
         role = ''
+        status = f2.logout(status)
     elif pilihan == 'login':
         print(f'Login gagal!\n Anda telah login dengan username {f1.username_()}, silahkan lakukan “logout” sebelum melakukan login kembali.')
     elif pilihan == 'cek':

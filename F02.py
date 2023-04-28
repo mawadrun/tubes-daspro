@@ -5,3 +5,4 @@ def logout(status):
         return False
     else:
         print('Logout gagal!\n Anda belum login, silahkan login terlebih dahulu sebelum melakukan logout.')
+        return True
