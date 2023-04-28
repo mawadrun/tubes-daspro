@@ -48,7 +48,7 @@ def lcgRandom():
 
     for i in range(3):
         x = ((a * x) + c) % m
-        tri[i] = x%6
+        tri[i] = x
     
     return tri[0], tri[1], tri[2]
 
@@ -198,6 +198,4 @@ def matrixColumnSum(matrix, column):
 
 
 if __name__ == "__main__": # buat coba2
-    lio = [1, 2, 3, 4, 5]
-    lio = delList(5, lio)
-    print(lio)
+    print()

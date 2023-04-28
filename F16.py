@@ -1,4 +1,4 @@
-
+import sys
 import F14
 
 def exit():
@@ -12,6 +12,6 @@ while opsi != "y" and opsi != "n" or opsi != "Y" and opsi != "N":
 if opsi == "y" or opsi == "Y":
   F14.save()
   sys.exit()
- elif opsi == "n" or opsi == "N":
+if opsi == "n" or opsi == "N":
   sys.exit()
 

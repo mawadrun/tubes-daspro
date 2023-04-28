@@ -3,6 +3,9 @@ import F01 as f1
 
 def bangun(data_bahan, data_candi):
     pasir, batu, air = fd.lcgRandom()
+    pasir = (pasir % 5) + 1
+    batu = (batu % 5) + 1
+    air = (air % 5) + 1
     if (int(data_bahan[0][2]) >= pasir) and (int(data_bahan[1][2]) >= batu) and (int(data_bahan[2][2]) >= air):
         # Kurangi persediaan
         data_bahan[0][2] = str(int(data_bahan[0][2]) - pasir)

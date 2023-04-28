@@ -44,7 +44,7 @@ def menu():
             role = f1.role_()
         else:
             print(f'Login gagal!\n Anda telah login dengan username {f1.username_()}, silahkan lakukan “logout” sebelum melakukan login kembali.')
-    elif pilihan == 'logout':
+    if pilihan == 'logout':
         if status == True:
             status = f2.logout(status)
             role = ''
@@ -73,37 +73,35 @@ def bandungmenu():
     if pilihan == 'help':
         print('---------Menu Role Bandung---------')
         print('Summon Jin  (summonjin)\nHilangkan Jin  (hapusjin)\nUbah Tipe Jin  (ubahjin)\nAmbil Laporan Jin (laporanjin)\nAmbil Laporan Candi (laporancandi)')
-    elif pilihan == 'summonjin':
+    if pilihan == 'summonjin':
         data_user = f3.summonjin(data_user)
         print(data_user)
-    elif pilihan == 'hapusjin':
+    if pilihan == 'hapusjin':
         data_user = f4.hapusjin(data_user)
         print(data_user)
-    elif pilihan == 'ubahjin':
+    if pilihan == 'ubahjin':
         data_user = f5.ubahjin(data_user)
         print(data_user)
-    elif pilihan == "batchkumpul":
+    if pilihan == "batchkumpul":
         pasir, batu, air = f8.batchkumpul(data_user)
         data_bahan[0][2] = str(int(data_bahan[0][2]) + pasir)
         data_bahan[1][2] = str(int(data_bahan[1][2]) + batu)
         data_bahan[2][2] = str(int(data_bahan[2][2]) + air)
-    elif pilihan == "batchbangun":
+    if pilihan == "batchbangun":
         data_bahan, data_candi = f8.batchbangun(data_user, data_bahan, data_candi)
-    elif pilihan == 'laporanjin':
+    if pilihan == 'laporanjin':
         laporanjin(data_user, data_candi, data_bahan)
-    elif pilihan == 'laporancandi':
+    if pilihan == 'laporancandi':
         laporancandi(data_candi)
-    elif pilihan == 'logout':
+    if pilihan == 'logout':
         role = ''
         status = f2.logout(status)
-    elif pilihan == 'login':
+    if pilihan == 'login':
         print(f'Login gagal!\n Anda telah login dengan username {f1.username_()}, silahkan lakukan “logout” sebelum melakukan login kembali.')
-    elif pilihan == 'cek':
+    if pilihan == 'cek':
         print(data_user)
         print(data_bahan)
         print(data_candi)
-    else:
-        print('ini Help')
 
 
 def roromenu():
@@ -115,9 +113,10 @@ def roromenu():
         data_candi = hancurkancandi(data_candi)
     if pilihan == 'ayamberkokok':
         ayamberkokok(data_candi)
-    elif pilihan == 'logout':
+    if pilihan == 'logout':
         role = ''
         status = f2.logout(status)
+
 
 # Menu akses jin
 def pengumpulMenu():
@@ -130,10 +129,6 @@ def pengumpulMenu():
         data_bahan[0][2] = str(int(data_bahan[0][2]) + pasir)
         data_bahan[1][2] = str(int(data_bahan[1][2]) + batu)
         data_bahan[2][2] = str(int(data_bahan[2][2]) + air)
-    if pilihan == 'cek':
-        print(data_user)
-        print(data_bahan)
-        print(data_candi)
 
 
 def pembangunMenu():
@@ -141,10 +136,6 @@ def pembangunMenu():
     pilihan = input()
     if pilihan == "bangun":
         data_bahan, data_candi = f6.bangun(data_bahan, data_candi)
-    if pilihan == 'cek':
-        print(data_user)
-        print(data_bahan)
-        print(data_candi)
 
 
 # Memanggil/Memulai Program
