@@ -10,15 +10,15 @@ def login(data_user):
         if data_user[i][0] == username:
             if data_user[i][1] == password:
                 role = fd.strSplit(data_user[i][2],'_')
-                print(f"Selamat Datang,{username}!")
+                print(f"\nSelamat Datang, {username}!")
                 return True
             else:
-                print("Password Salah!")
+                print("\nPassword Salah!")
                 role = ''
                 return False
         else:
             role = ''
-    print("Username tidak terdaftar!")
+    print("\nUsername tidak terdaftar!")
     return False
 
 ## Fungsi meneruskan variabel

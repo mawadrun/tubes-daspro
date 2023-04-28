@@ -83,6 +83,12 @@ def sliceList(list, imin, imax):
         newlist[i-imin] = list[i]
     return newlist
 
+def joinList(list, separator):
+    newstr = ""
+    for i in range(listLen(list)-1):
+        newstr += str(list[i]) + separator
+    newstr += str(list[listLen(list)-1])
+    return newstr
 
 def appendList(element, list):
 # menaruh element pada ujung list. penggunaan: listBaru = appendList(elemenBaru, listLama)

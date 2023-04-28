@@ -14,6 +14,10 @@ from F10 import main as laporancandi
 from F11 import main as hancurkancandi
 from F12 import main as ayamberkokok
 from F13 import main as load
+from F14 import main as save
+from F15 import main as help_
+from F16 import main as exit_
+
 
 
 ## JIKA INGIN MENAMBAHKAN OPSI LOGOUT PADA MENU SESUAI ROLE COPY CODE INI
@@ -24,8 +28,8 @@ from F13 import main as load
 
 # Pembacaan data
 data_user = load("./csv/user.csv")
-data_candi = load("./csv/candi.csv")
 data_bahan = load("./csv/bahan_bangunan.csv")
+data_candi = load("./csv/candi.csv")
 
 # Program Utama
 status = False              # Penanda awal bahwa belum login
@@ -35,9 +39,11 @@ def menu():
     global role
     global status
     global data_user
-    print('-----------Login Page-----------')
-    print('login atau logout')
-    pilihan = input('>>>')
+    
+    print('Masukkan command “help” untuk daftar command yang dapat kamu panggil.')
+    pilihan = input('>>> ')
+    if pilihan == 'help':
+        help_(role)
     if pilihan == 'login':
         if status == False:
             status = f1.login(data_user)
@@ -50,6 +56,11 @@ def menu():
             role = ''
         elif status == False:
             print('Logout gagal!\nAnda belum login, silahkan login terlebih dahulu sebelum melakukan logout')
+    elif pilihan == 'save':
+        save(data_user, data_bahan, data_candi)
+    elif pilihan == 'exit':
+        exit_(data_user, data_bahan, data_candi)
+    
     # Memanggil menu bandung
     while role == 'bandung':
         bandungmenu()
@@ -69,10 +80,11 @@ def bandungmenu():
     global status
     global role
     global data_user, data_bahan, data_candi
-    pilihan = input('>>>')
+    pilihan = input('>>> ')
     if pilihan == 'help':
-        print('---------Menu Role Bandung---------')
-        print('Summon Jin  (summonjin)\nHilangkan Jin  (hapusjin)\nUbah Tipe Jin  (ubahjin)\nAmbil Laporan Jin (laporanjin)\nAmbil Laporan Candi (laporancandi)')
+        help_(role)
+
+    # Role-specific commands
     elif pilihan == 'summonjin':
         data_user = f3.summonjin(data_user)
         print(data_user)
@@ -96,33 +108,61 @@ def bandungmenu():
     elif pilihan == 'logout':
         role = ''
         status = f2.logout(status)
+
+    # Account commands
     elif pilihan == 'login':
         print(f'Login gagal!\n Anda telah login dengan username {f1.username_()}, silahkan lakukan “logout” sebelum melakukan login kembali.')
     elif pilihan == 'cek':
         print(data_user)
         print(data_bahan)
         print(data_candi)
-    else:
-        print('ini Help')
+    
+    # Game commands
+    elif pilihan == 'save':
+        save(data_user, data_bahan, data_candi)
+    elif pilihan == 'exit':
+        exit_(data_user, data_bahan, data_candi)
 
 
 def roromenu():
+    print('Masukkan command “help” untuk daftar command yang dapat kamu panggil.')
     global status
     global role
     global data_user, data_bahan, data_candi
-    pilihan = input()
-    if pilihan == 'hancurkancandi':
+    pilihan = input(">>> ")
+    if pilihan == 'help':
+        help_(role)
+
+    # Role-specific commands
+    elif pilihan == 'hancurkancandi':
         data_candi = hancurkancandi(data_candi)
-    if pilihan == 'ayamberkokok':
+    elif pilihan == 'ayamberkokok':
         ayamberkokok(data_candi)
     elif pilihan == 'logout':
         role = ''
         status = f2.logout(status)
 
+    # Account commands
+    elif pilihan == 'login':
+        print(f'Login gagal!\n Anda telah login dengan username {f1.username_()}, silahkan lakukan “logout” sebelum melakukan login kembali.')
+
+    # Game commands
+    elif pilihan == 'save':
+        save(data_user, data_bahan, data_candi)
+    elif pilihan == 'exit':
+        exit_(data_user, data_bahan, data_candi)
+
 # Menu akses jin
 def pengumpulMenu():
+    print('Masukkan command “help” untuk daftar command yang dapat kamu panggil.')
+    global status
     global role
-    pilihan = input()
+    global data_user, data_bahan, data_candi
+    pilihan = input(">>> ")
+    if pilihan == 'help':
+        help_(role)
+
+    # Role-specific commands
     if pilihan == "kumpul":
         pasir, batu, air = f7.kumpul()
         print("Jin menemukan {} pasir, {} batu, dan {} air.".format(pasir, batu, air))
@@ -130,23 +170,58 @@ def pengumpulMenu():
         data_bahan[0][2] = str(int(data_bahan[0][2]) + pasir)
         data_bahan[1][2] = str(int(data_bahan[1][2]) + batu)
         data_bahan[2][2] = str(int(data_bahan[2][2]) + air)
-    if pilihan == 'cek':
+    elif pilihan == 'cek':
         print(data_user)
         print(data_bahan)
         print(data_candi)
+
+    # Account commands
+    elif pilihan == 'logout':
+        role = ''
+        status = f2.logout(status)
+    elif pilihan == 'login':
+        print(f'Login gagal!\n Anda telah login dengan username {f1.username_()}, silahkan lakukan “logout” sebelum melakukan login kembali.')
+
+    # Game commands
+    elif pilihan == 'save':
+        save(data_user, data_bahan, data_candi)
+    elif pilihan == 'exit':
+        exit_(data_user, data_bahan, data_candi)
 
 
 def pembangunMenu():
-    global data_candi, data_bahan
-    pilihan = input()
+    print('Masukkan command “help” untuk daftar command yang dapat kamu panggil.')
+    global status
+    global role
+    global data_user, data_bahan, data_candi
+    pilihan = input(">>> ")
+    if pilihan == 'help':
+        help_(role)
+
+    # Role-specific commands
     if pilihan == "bangun":
         data_bahan, data_candi = f6.bangun(data_bahan, data_candi)
-    if pilihan == 'cek':
+    elif pilihan == 'cek':
         print(data_user)
         print(data_bahan)
         print(data_candi)
+    
+    # Account commands
+    elif pilihan == 'logout':
+        role = ''
+        status = f2.logout(status)
+    elif pilihan == 'login':
+        print(f'Login gagal!\n Anda telah login dengan username {f1.username_()}, silahkan lakukan “logout” sebelum melakukan login kembali.')
+
+        # Game commands
+    elif pilihan == 'save':
+        save(data_user, data_bahan, data_candi)
+    elif pilihan == 'exit':
+        exit_(data_user, data_bahan, data_candi)
 
 
 # Memanggil/Memulai Program
+
+print("=== Bandung Bondowoso, Roro Jonggrang, dan Candi Prambanan ===")
 while True:
     menu()
