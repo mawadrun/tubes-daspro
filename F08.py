@@ -91,5 +91,5 @@ def batchbangun(data_user, data_bahan, data_candi):
                 kurangAir *= -1
             print("Bangun gagal. Kurang {} pasir, {} batu, dan {} air.".format(kurangPasir, kurangBatu, kurangAir))
     else:
-        print('Kumpul gagal. Anda tidak punya jin pembangun. Silahkan summon terlebih dahulu.')
+        print('Bangun gagal. Anda tidak punya jin pembangun. Silahkan summon terlebih dahulu.')
     return data_bahan, data_candi
