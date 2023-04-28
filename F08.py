@@ -54,7 +54,7 @@ def batchbangun(data_user, data_bahan, data_candi):
         lastid = fd.listLen(data_candi)
 
         # Penyalinan data_candi ke tempadata_candi
-        for i in range(fd.listLen(data_candi)):
+        for i in range(lastid):
             for j in range(5):
                 tempdata_candi[i][j] = data_candi[i][j]
 
@@ -91,5 +91,5 @@ def batchbangun(data_user, data_bahan, data_candi):
                 kurangAir *= -1
             print("Bangun gagal. Kurang {} pasir, {} batu, dan {} air.".format(kurangPasir, kurangBatu, kurangAir))
     else:
-        print('Kumpul gagal. Anda tidak punya jin pembangun. Silahkan summon terlebih dahulu.')
+        print('Bangun gagal. Anda tidak punya jin pembangun. Silahkan summon terlebih dahulu.')
     return data_bahan, data_candi

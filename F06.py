@@ -3,14 +3,19 @@ import F01 as f1
 
 def bangun(data_bahan, data_candi):
     pasir, batu, air = fd.lcgRandom()
+    pasir = (pasir % 5) + 1
+    batu = (batu % 5) + 1
+    air = (air % 5) + 1
     if (int(data_bahan[0][2]) >= pasir) and (int(data_bahan[1][2]) >= batu) and (int(data_bahan[2][2]) >= air):
         # Kurangi persediaan
         data_bahan[0][2] = str(int(data_bahan[0][2]) - pasir)
         data_bahan[1][2] = str(int(data_bahan[1][2]) - batu)
         data_bahan[2][2] = str(int(data_bahan[2][2]) - air)
 
-        candi = int(data_candi[-1][0]) + 1
+        candi = int(data_candi[-1][0])
+
         if candi < 100:
+            candi += 1
             # Inisialisasi list tempdatacandi sepanjang list data_candi ditambah 1 untuk memasukkan candi yang baru dibangun
             tempdata_candi = [['' for i in range(5)] for i in range(1+fd.listLen(data_candi))]
             lastid = fd.listLen(data_candi)

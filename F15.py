@@ -24,8 +24,10 @@ def main(role):
 
     print("========== HELP ==========")
     for i in range(fd.listLen(commands)):
-        if commands[i][2] == role or commands[i][2] == 'all':
+        if (commands[i][2] == role or commands[i][2] == 'all') and (i+1-unauthorized < 10):
             print(f"{i+1-unauthorized}. {commands[i][0]}\n   {commands[i][1]}")
+        elif (commands[i][2] == role or commands[i][2] == 'all'):
+            print(f"{i+1-unauthorized}.{commands[i][0]}\n   {commands[i][1]}")
         else:
             unauthorized += 1
 
