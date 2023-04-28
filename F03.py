@@ -1,7 +1,7 @@
 import fungsi_dasar as fd
 import F01 as f1
 
-# Summon Jin                #Note Username belum di test
+# Summon Jin
 def summonjin(data_user):
     Validjenis = False
     Validuser = False
@@ -36,7 +36,7 @@ def summonjin(data_user):
             if len(password_jin) <5 or len(password_jin)> 25:
                 print('Password panjangnya harus 5-25 karakter!')
             else:
-                print('Mengumpulkan sesajen...\n Menyerahkan sesajen...\n  Membacakan mantra...')
+                print('Mengumpulkan sesajen...\nMenyerahkan sesajen...\nMembacakan mantra...')
                 print(f'Jin {username_jin} berhasil dipanggil!')
                 Validpass = True
         return popjin(data_user, username_jin, password_jin, jenis)
@@ -67,11 +67,3 @@ def popjin(data_user, username_jin, password_jin, jenis):
     else:
         tempdata_user[lastid][2] = 'jin_pembangun'
     return tempdata_user
-
-# cek banyak user
-#def banyakuser(data_user):
-    #count = 0
-    #for i in range(102):
-        #if data_user[i][0] != '':
-            #count += 1
-    #return count

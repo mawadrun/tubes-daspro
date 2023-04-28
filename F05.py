@@ -7,7 +7,7 @@ def ubahjin(data_user):
     for i in range(fd.listLen(data_user)):
         if data_user[i][0] == ubahrole_username:
             ada = True
-            role_user = fd.split(data_user[i][2], '_')
+            role_user = fd.strSplit(data_user[i][2], '_')
             opsi = input(f'Jin ini bertipe “{role_user[1]}”. Yakin ingin mengubah ke tipe “{rolelain(role_user[1])}” (Y/N)? ')
             if opsi == 'Y':
                 data_user[i][2] = (f'jin_{rolelain(role_user[1])}')

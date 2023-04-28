@@ -15,6 +15,13 @@ from F11 import main as hancurkancandi
 from F12 import main as ayamberkokok
 from F13 import main as load
 
+
+## JIKA INGIN MENAMBAHKAN OPSI LOGOUT PADA MENU SESUAI ROLE COPY CODE INI
+# elif pilihan == 'logout':
+#     role = ''
+#     status = f2.logout(status)
+
+
 # Pembacaan data
 data_user = load("./csv/user.csv")
 data_candi = load("./csv/candi.csv")
@@ -27,14 +34,14 @@ role = ''
 def menu():
     global role
     global status
+    global data_user
     print('-----------Login Page-----------')
     print('login atau logout')
-    pilihan = input()
+    pilihan = input('>>>')
     if pilihan == 'login':
         if status == False:
-            status = f1.login()
+            status = f1.login(data_user)
             role = f1.role_()
-            print('Masukkan command “help” untuk daftar command yang dapat kamu panggil.')
         else:
             print(f'Login gagal!\n Anda telah login dengan username {f1.username_()}, silahkan lakukan “logout” sebelum melakukan login kembali.')
     elif pilihan == 'logout':
@@ -46,6 +53,9 @@ def menu():
     # Memanggil menu bandung
     while role == 'bandung':
         bandungmenu()
+
+    while role == 'roro':
+        roromenu()
     # Memanggil menu jin pengumpul
     while role == 'pengumpul':
         pengumpulMenu()
@@ -55,10 +65,11 @@ def menu():
     
 # Menu bila role Bandung (print di fungsi ini hanya untuk pengetesan)
 def bandungmenu():
+    print('Masukkan command “help” untuk daftar command yang dapat kamu panggil.')
     global status
     global role
     global data_user, data_bahan, data_candi
-    pilihan = input()
+    pilihan = input('>>>')
     if pilihan == 'help':
         print('---------Menu Role Bandung---------')
         print('Summon Jin  (summonjin)\nHilangkan Jin  (hapusjin)\nUbah Tipe Jin  (ubahjin)\nAmbil Laporan Jin (laporanjin)\nAmbil Laporan Candi (laporancandi)')
@@ -96,6 +107,7 @@ def bandungmenu():
 
 
 def roromenu():
+    global status
     global role
     global data_user, data_bahan, data_candi
     pilihan = input()
@@ -103,7 +115,9 @@ def roromenu():
         data_candi = hancurkancandi(data_candi)
     if pilihan == 'ayamberkokok':
         ayamberkokok(data_candi)
-
+    elif pilihan == 'logout':
+        role = ''
+        status = f2.logout(status)
 
 # Menu akses jin
 def pengumpulMenu():
