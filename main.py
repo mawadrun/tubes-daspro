@@ -44,18 +44,15 @@ def menu():
     pilihan = input('>>> ')
     if pilihan == 'help':
         help_(role)
-    if pilihan == 'login':
+    elif pilihan == 'login':
         if status == False:
             status = f1.login(data_user)
             role = f1.role_()
         else:
             print(f'Login gagal!\n Anda telah login dengan username {f1.username_()}, silahkan lakukan “logout” sebelum melakukan login kembali.')
-    if pilihan == 'logout':
-        if status == True:
-            status = f2.logout(status)
-            role = ''
-        elif status == False:
-            print('Logout gagal!\nAnda belum login, silahkan login terlebih dahulu sebelum melakukan logout')
+    elif pilihan == 'logout':
+        status = f2.logout(status)
+        role = ''
     elif pilihan == 'save':
         save(data_user, data_bahan, data_candi)
     elif pilihan == 'exit':
