@@ -4,13 +4,8 @@ import F06 as f6
 import F07 as f7
 
 def batchkumpul(data_user):
-    # inisaliasi variabel jumlah jin_pengumpul
-    nPengumpul = 0
+    nPengumpul = fd.matrixCount(data_user, 2, "jin_pengumpul")
     pasir = batu = air = 0
-    # looping untuk menentukan jumlah jin_pengumpul
-    for i in range(fd.listLen(data_user)):
-        if data_user[i][2] == "jin_pengumpul":
-            nPengumpul += 1
     if nPengumpul > 0:
         print('Mengerahkan {} jin untuk mengumpulkan bahan.'.format(nPengumpul))
         # Loop mengumpulkan bahan dari setiap jin_pengumpul
@@ -28,12 +23,7 @@ def batchkumpul(data_user):
 
 
 def batchbangun(data_user, data_bahan, data_candi):
-    # inisialisasi jumlah jin_pembangun
-    nPembangun = 0
-    # looping untuk menentukan jumlah jin_pembangun
-    for i in range(fd.listLen(data_user)):
-        if data_user[i][2] == "jin_pembangun":
-            nPembangun += 1
+    nPembangun = fd.matrixCount(data_user, 2, "jin_pembangun")
     
     # inisalisasi variabel tempdata_jin untuk menampung username jin_pembangun
     tempdata_jin = ['' for i in range(nPembangun)]
@@ -45,28 +35,26 @@ def batchbangun(data_user, data_bahan, data_candi):
             if data_user[j][2] == "jin_pembangun":
                 tempdata_jin[i] = data_user[j][0]
                 i += 1
+    totalCandi = int(data_candi[-1][0])
 
     if nPembangun > 0:
         print('Mengerahkan {} jin untuk membangun candi dengan total bahan {} pasir, {} batu, dan {} air.'.format(nPembangun, data_bahan[0][2], data_bahan[1][2], data_bahan[2][2]))
-        # inisialisasi variabel tempdata_candi untuk menampung data_candi dan data candi yang baru dibangun
-        tempdata_candi = [['' for i in range(5)] for i in range(nPembangun+fd.listLen(data_candi))]
-        
+        tempdata_candi = data_candi
         lastid = fd.listLen(data_candi)
-
-        # Penyalinan data_candi ke tempadata_candi
-        for i in range(lastid):
-            for j in range(5):
-                tempdata_candi[i][j] = data_candi[i][j]
-
+        pasir = batu = air = 0
         # Pengisian candi yang baru dibangun ke tempdata_candi
         j = 0
-        for i in range(lastid, fd.listLen(tempdata_candi)):
-            pasir, batu, air = fd.lcgRandom()
-            tempdata_candi[i][0] = str(i)
-            tempdata_candi[i][1] = tempdata_jin[j]
-            tempdata_candi[i][2] = pasir
-            tempdata_candi[i][3] = batu
-            tempdata_candi[i][4] = air
+        for i in range(lastid, nPembangun+fd.listLen(data_candi)):
+            getpasir, getbatu, getair = fd.lcgRandom()
+            getpasir = (getpasir % 5) + 1
+            getbatu = (getbatu % 5) + 1
+            getair = (getair % 5) + 1
+            pasir += getpasir
+            batu += getbatu
+            air += getair
+            if totalCandi < 99:
+                tempdata_candi = fd.appendList([str(i), tempdata_jin[j], getpasir, getbatu, getair], tempdata_candi)
+                totalCandi += 1
             # tunda dulu gak sih, nanti timeny tetep barengan (cepet banget executeny :v)
             time.sleep(1)
             j += 1

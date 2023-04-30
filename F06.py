@@ -12,27 +12,16 @@ def bangun(data_bahan, data_candi):
         data_bahan[1][2] = str(int(data_bahan[1][2]) - batu)
         data_bahan[2][2] = str(int(data_bahan[2][2]) - air)
 
-        candi = int(data_candi[-1][0])
+        totalCandi = int(data_candi[-1][0])
 
-        if candi < 100:
-            candi += 1
+        if totalCandi < 99:
+            totalCandi += 1
             # Inisialisasi list tempdatacandi sepanjang list data_candi ditambah 1 untuk memasukkan candi yang baru dibangun
-            tempdata_candi = [['' for i in range(5)] for i in range(1+fd.listLen(data_candi))]
             lastid = fd.listLen(data_candi)
-            # Penyalinan list data_candi ke tempdata_candi
-            for i in range(lastid):
-                for j in range(5):
-                    tempdata_candi[i][j] = data_candi[i][j]
-            # Pengisian candi yang baru dibangun ke tempdata_candi
-            tempdata_candi[lastid][0] = str(lastid)
-            tempdata_candi[lastid][1] = str(f1.username_())
-            tempdata_candi[lastid][2] = pasir
-            tempdata_candi[lastid][3] = batu
-            tempdata_candi[lastid][4] = air
+            data_candi = fd.appendList([str(lastid), str(f1.username_()), pasir, batu, air], data_candi)
 
-            data_candi = tempdata_candi
         print('Candi berhasil dibangun.')
-        print("Sisa candi yang perlu dibangun {}".format(100-candi))
+        print("Sisa candi yang perlu dibangun {}".format(100-totalCandi))
     else:
         print('Bahan bangunan tidak mencukupi.')
         print('Candi tidak bisa dibangun!')
