@@ -19,14 +19,15 @@ def hapusjin(data_user):
                     print("Kamu tega menghapus Roro")
                 return data_user
     for i in range(fd.listLen(data_user)-1):
-        if i == id:
-            lewat = True
-        if lewat == False:
-            for j in range(3):
-                tempdata_user[i][j] = data_user[i][j]
-        elif lewat == True:
-            for j in range(3):
-                tempdata_user[i][j] = data_user[i+1][j]
+        if ada == True:
+            if i == id:
+                lewat = True
+            if lewat == False:
+                for j in range(3):
+                    tempdata_user[i][j] = data_user[i][j]
+            elif lewat == True:
+                for j in range(3):
+                    tempdata_user[i][j] = data_user[i+1][j]
     if ada == False:
         print('Tidak ada jin dengan username tersebut.')
         return data_user
