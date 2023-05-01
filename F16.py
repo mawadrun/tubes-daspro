@@ -1,7 +1,7 @@
 
 from F14 import main as save
 
-def main(user, bahan, candi):
+def main(data_user, data_bahan, data_candi):
   opsi = input("Apakah Anda mau melakukan penyimpanan file yang sudah diubah? (Y/N): ")
 
   # menerima input dari pengguna 
@@ -10,7 +10,7 @@ def main(user, bahan, candi):
 
   # validasi input 
   if opsi == "y" or opsi == "Y":
-    save(user, bahan, candi)
+    save(data_user, data_bahan, data_candi)
     exit()
   elif opsi == "n" or opsi == "N":
     exit()

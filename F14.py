@@ -18,7 +18,7 @@ def save(matrix, file): # Meng-export matrix ke file (overwrite)
               f.writelines(newmatrix[i] + "\n") # Gabungkan setiap baris menjadi sebuah string
       f.writelines("\n") # Tulis ke csv
 
-def main(user, bahan, candi):
+def main(data_user, data_bahan, data_candi):
   folder = str(input("Masukkan nama folder: "))
 
   if folder == "None":
@@ -41,9 +41,9 @@ def main(user, bahan, candi):
     else:
       print("Saving...")
     # Simpan hasil permainan
-    save(user, "./save/" + folder + "/user.csv")
-    save(bahan, "./save/" + folder + "/bahan_bangunan.csv")
-    save(candi, "./save/" + folder + "/candi.csv")
+    save(data_user, "./save/" + folder + "/user.csv")
+    save(data_bahan, "./save/" + folder + "/bahan_bangunan.csv")
+    save(data_candi, "./save/" + folder + "/candi.csv")
     print(f"Berhasil menyimpan data di folder {folder}!")
 
 
