@@ -9,6 +9,6 @@ def main(data_user, data_bahan, data_candi):
         print(f"Kukuruyuk.. Kukuruyuk..\n\nJumlah Candi: {jml_candi}\n\nYah, Bandung Bondowoso memenangkan permainan!")
         exit_(data_user, data_bahan, data_candi)
     else:
-        print(f"Kukuruyuk.. Kukuruyuk..\n\nJumlah Candi: {jml_candi}\n\nSelamat, Roro Jonggrang memenangkan permainan!\n\n*Bandung Bondowoso angry noise*\nRoro Jonggrang dikutuk menjadi data_candi.")
+        print(f"Kukuruyuk.. Kukuruyuk..\n\nJumlah Candi: {jml_candi}\n\nSelamat, Roro Jonggrang memenangkan permainan!\n\n*Bandung Bondowoso angry noise*\nRoro Jonggrang dikutuk menjadi candi.")
         exit_(data_user, data_bahan, data_candi)
 
