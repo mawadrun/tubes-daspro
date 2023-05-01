@@ -1,7 +1,8 @@
 import fungsi_dasar as fd
+import time
 
-def kumpul():
-    pasir, batu, air = fd.lcgRandom()
+def kumpul(t):
+    pasir, batu, air = fd.lcgRandom(t)
     pasir = (pasir % 6)
     batu = (batu % 6)
     air = (air % 6)

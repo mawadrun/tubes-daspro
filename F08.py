@@ -1,7 +1,7 @@
-import time
 import fungsi_dasar as fd
 import F06 as f6
 import F07 as f7
+import time
 
 def batchkumpul(data_user):
     nPengumpul = fd.matrixCount(data_user, 2, "jin_pengumpul")
@@ -10,7 +10,8 @@ def batchkumpul(data_user):
         print('Mengerahkan {} jin untuk mengumpulkan bahan.'.format(nPengumpul))
         # Loop mengumpulkan bahan dari setiap jin_pengumpul
         for i in range(nPengumpul):
-            getPasir, getBatu, getAir = f7.kumpul()
+            t = int(time.time())
+            getPasir, getBatu, getAir = f7.kumpul(t)
             pasir += getPasir
             batu += getBatu
             air += getAir
@@ -35,7 +36,12 @@ def batchbangun(data_user, data_bahan, data_candi):
             if data_user[j][2] == "jin_pembangun":
                 tempdata_jin[i] = data_user[j][0]
                 i += 1
-    totalCandi = int(data_candi[-1][0])
+    
+    lenData_Candi = fd.listLen(data_candi)
+    if lenData_Candi == 0:
+        totalCandi == 0
+    else:
+        totalCandi = int(data_candi[-1][0])+1
 
     if nPembangun > 0:
         print('Mengerahkan {} jin untuk membangun candi dengan total bahan {} pasir, {} batu, dan {} air.'.format(nPembangun, data_bahan[0][2], data_bahan[1][2], data_bahan[2][2]))
@@ -45,14 +51,15 @@ def batchbangun(data_user, data_bahan, data_candi):
         # Pengisian candi yang baru dibangun ke tempdata_candi
         j = 0
         for i in range(lastid, nPembangun+fd.listLen(data_candi)):
-            getpasir, getbatu, getair = fd.lcgRandom()
+            t = int(time.time())
+            getpasir, getbatu, getair = fd.lcgRandom(t)
             getpasir = (getpasir % 5) + 1
             getbatu = (getbatu % 5) + 1
             getair = (getair % 5) + 1
             pasir += getpasir
             batu += getbatu
             air += getair
-            if totalCandi < 99:
+            if totalCandi < 100:
                 tempdata_candi = fd.appendList([str(i), tempdata_jin[j], getpasir, getbatu, getair], tempdata_candi)
                 totalCandi += 1
             # tunda dulu gak sih, nanti timeny tetep barengan (cepet banget executeny :v)

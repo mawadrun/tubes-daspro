@@ -107,15 +107,11 @@ def bandungmenu():
         status = f2.logout(status)
     if pilihan == 'login':
         print(f'Login gagal!\n Anda telah login dengan username {f1.username_()}, silahkan lakukan “logout” sebelum melakukan login kembali.')
-    if pilihan == 'cek':
-        print(data_user)
-        print(data_bahan)
-        print(data_candi)
     
     # Game commands
-    elif pilihan == 'save':
+    if pilihan == 'save':
         save(data_user, data_bahan, data_candi)
-    elif pilihan == 'exit':
+    if pilihan == 'exit':
         exit_(data_user, data_bahan, data_candi)
 
 
@@ -159,16 +155,13 @@ def pengumpulMenu():
 
     # Role-specific commands
     if pilihan == "kumpul":
-        pasir, batu, air = f7.kumpul()
+        t = int(time.time())
+        pasir, batu, air = f7.kumpul(t)
         print("Jin menemukan {} pasir, {} batu, dan {} air.".format(pasir, batu, air))
         # Tambahkan ke persediaan
         data_bahan[0][2] = str(int(data_bahan[0][2]) + pasir)
         data_bahan[1][2] = str(int(data_bahan[1][2]) + batu)
         data_bahan[2][2] = str(int(data_bahan[2][2]) + air)
-    if pilihan == 'cek':
-        print(data_user)
-        print(data_bahan)
-        print(data_candi)
 
     # Account commands
     if pilihan == 'logout':
@@ -196,10 +189,6 @@ def pembangunMenu():
     # Role-specific commands
     if pilihan == "bangun":
         data_bahan, data_candi = f6.bangun(data_bahan, data_candi)
-    if pilihan == 'cek':
-        print(data_user)
-        print(data_bahan)
-        print(data_candi)
     
     # Account commands
     if pilihan == 'logout':

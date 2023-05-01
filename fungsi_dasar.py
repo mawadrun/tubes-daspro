@@ -39,16 +39,15 @@ def strSplit(string, separator):
     return newlist
 
 # ============= FUNGSI INTEGER ========== #
-def lcgRandom():
-    x = int(time.time())
+def lcgRandom(t):
     a = 1664525
     c = 1013904223
     m = 2**32
     tri = [0, 0, 0]
 
     for i in range(3):
-        x = ((a * x) + c) % m
-        tri[i] = x
+        t = ((a * t) + c) % m
+        tri[i] = t
     
     return tri[0], tri[1], tri[2]
 
