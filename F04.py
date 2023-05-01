@@ -7,9 +7,17 @@ def hapusjin(data_user):
     hapus_username = input("Masukkan username jin: ")
     tempdata_user = [['' for i in range(3)] for i in range(fd.listLen(data_user)-1)]
     for i in range(fd.listLen(data_user)):
-        if data_user[i][0] == hapus_username:
-            id = i
-            ada = True
+        if i != 1 and i != 0:
+            if data_user[i][0] == hapus_username:
+                id = i
+                ada = True
+        else:
+            if data_user[i][0] == hapus_username:
+                if i == 0:
+                    print('Jangan Hapus Dirimu')
+                elif i == 1:
+                    print("Kamu tega menghapus Roro")
+                return data_user
     for i in range(fd.listLen(data_user)-1):
         if i == id:
             lewat = True
