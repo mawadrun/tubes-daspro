@@ -52,15 +52,15 @@ def batchbangun(data_user, data_bahan, data_candi):
         j = 0
         for i in range(lastid, nPembangun+fd.listLen(data_candi)):
             t = int(time.time())
-            getpasir, getbatu, getair = fd.lcgRandom(t)
-            getpasir = (getpasir % 5) + 1
-            getbatu = (getbatu % 5) + 1
-            getair = (getair % 5) + 1
-            pasir += getpasir
-            batu += getbatu
-            air += getair
+            getPasir, getBatu, getAir = fd.lcgRandom(t)
+            getPasir = (getPasir % 5) + 1
+            getBatu = (getBatu % 5) + 1
+            getAir = (getAir % 5) + 1
+            pasir += getPasir
+            batu += getBatu
+            air += getAir
             if totalCandi < 100:
-                tempdata_candi = fd.appendList([str(i), tempdata_jin[j], getpasir, getbatu, getair], tempdata_candi)
+                tempdata_candi = fd.appendList([str(i), tempdata_jin[j], getPasir, getBatu, getAir], tempdata_candi)
                 totalCandi += 1
             # tunda dulu gak sih, nanti timeny tetep barengan (cepet banget executeny :v)
             time.sleep(1)
