@@ -16,7 +16,7 @@ def bangun(data_bahan, data_candi):
 
         lenData_Candi = fd.listLen(data_candi)
         if lenData_Candi == 0:
-            totalCandi == 0
+            totalCandi = 0
         else:
             totalCandi = int(data_candi[-1][0])+1
 

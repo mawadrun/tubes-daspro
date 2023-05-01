@@ -1,7 +1,7 @@
 # F10 - Ambil Laporan Candi
 
 import fungsi_dasar as fd
-from F13 import main as load
+# from F13 import main as load
 
 def candiTer(apa, candi):
 # menentukan candi ter(mahal/murah) dalam format [id candi, harga]
@@ -11,12 +11,12 @@ def candiTer(apa, candi):
         price_candi = (int(candi[i][2])*10000 + int(candi[i][3])*15000 + int(candi[i][4])*7500)
         pricelist = fd.appendList([id_candi, price_candi], pricelist)
     pricelist = fd.matrixSort(pricelist, 1, 'd')
-    if apa == 'mahal':
+    if apa == 'mahal': # Paling atas = termahal
         return pricelist[0]
-    elif apa == 'murah':
+    elif apa == 'murah': # Paling bawah = termurah
         return pricelist[fd.listLen(pricelist)-1]
     
-def kasihtitik(x):
+def kasihtitik(x): # Ubah 1000000 menjadi 1.000.000 (contoh)
     ns = str(x)
     for i in range(fd.strLen(ns), 3, -3):
         ns = fd.strInsert(ns, '.', i-3)
@@ -24,7 +24,7 @@ def kasihtitik(x):
 
 
 
-def main(candi):
+def main(candi): # Print sesuai format, gunakan fungsi yang diimplementasi di atas
     print(f"Total Candi: {fd.listLen(candi)}")
     print(f"Total Pasir yang digunakan: {fd.matrixColumnSum(candi, 2)}")
     print(f"Total Batu yang digunakan: {fd.matrixColumnSum(candi, 3)}")    
@@ -32,9 +32,3 @@ def main(candi):
     print(f"ID Candi Termahal: {candiTer('mahal', candi)[0]} (Rp {candiTer('mahal', candi)[1]})")
     print(f"ID Candi Termurah: {candiTer('murah', candi)[0]} (Rp {candiTer('murah', candi)[1]})")
 
-if __name__ == '__main__':
-    user = load("./csv/user.csv")
-    candi = load("./csv/candi.csv")
-    bahan = load("./csv/bahan_bangunan.csv")
-
-    main(candi)

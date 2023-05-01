@@ -1,4 +1,6 @@
 import time
+import argparse 
+import os
 import fungsi_dasar as fd
 
 import F01 as f1
@@ -26,10 +28,8 @@ from F16 import main as exit_
 #     status = f2.logout(status)
 
 
-# Pembacaan data
-data_user = load("./csv/user.csv")
-data_bahan = load("./csv/bahan_bangunan.csv")
-data_candi = load("./csv/candi.csv")
+
+
 
 # Program Utama
 status = False              # Penanda awal bahwa belum login
@@ -39,6 +39,7 @@ def menu():
     global role
     global status
     global data_user
+    global folder
     
     print('Masukkan command “help” untuk daftar command yang dapat kamu panggil.')
     pilihan = input('>>> ')
@@ -84,13 +85,10 @@ def bandungmenu():
     # Role-specific commands
     elif pilihan == 'summonjin':
         data_user = f3.summonjin(data_user)
-        print(data_user)
     if pilihan == 'hapusjin':
         data_user = f4.hapusjin(data_user)
-        print(data_user)
     if pilihan == 'ubahjin':
         data_user = f5.ubahjin(data_user)
-        print(data_user)
     if pilihan == "batchkumpul":
         pasir, batu, air = f8.batchkumpul(data_user)
         data_bahan[0][2] = str(int(data_bahan[0][2]) + pasir)
@@ -128,7 +126,7 @@ def roromenu():
     if pilihan == 'hancurkancandi':
         data_candi = hancurkancandi(data_candi)
     if pilihan == 'ayamberkokok':
-        ayamberkokok(data_candi)
+        ayamberkokok(data_user, data_bahan, data_candi)
     if pilihan == 'logout':
         role = ''
         status = f2.logout(status)
@@ -204,19 +202,41 @@ def pembangunMenu():
         exit_(data_user, data_bahan, data_candi)
 
 
-# Memanggil/Memulai Program
-print("                               /                              ")
-print("                  =           ==           =                  ")
-print("                 = =         =  =         = =                 ")
-print("                =   =       =    =       =   =                ")
-print("               =     =     =      =     =     =               ")
-print("              =========   ==========   =========              ")
-print("              = = = = =   = = == = =   = = = = =              ")
-print("             =========== ============ ===========             ")
-print("             =  = = =  = =  = == =  = =  = = =  =             ")
-print("             =========== ============ ===========             ")
-print("               =       Bandung Bondowoso,    =                ")
-print("              ===       Roro Jonggrang,     ===               ")
-print("               =      dan Candi Prambanan    =                 \n")
-while True:
-    menu()
+
+# Pembacaan data default
+# data_user = load("./new/user.csv")
+# data_bahan = load("./new/bahan_bangunan.csv")
+# data_candi = load("./new/candi.csv")
+
+# Pembacaan data menggunakan parser
+parser = argparse.ArgumentParser()
+parser.add_argument("load", help="Masukan nama folder yang ingin di load!",nargs='?')
+args = parser.parse_args()
+folder = str(args.load)
+if folder == "None":
+    print("Tidak ada nama folder yang diberikan!")
+elif os.path.isdir(folder) == False: #cek directory ada / tidak
+    print(f"Folder \"{folder}\" tidak ditemukan.")
+else:
+    print("Memuat file...")
+    data_user = load("./" + str(folder) + "/user.csv")
+    data_candi = load("./" + str(folder) + "/candi.csv")
+    data_bahan = load("./" + str(folder) + "/bahan_bangunan.csv")
+    print("File berhasil dimuat!")
+
+    # Memanggil/Memulai Program
+    print("                               /                              ")
+    print("                  =           ==           =                  ")
+    print("                 = =         =  =         = =                 ")
+    print("                =   =       =    =       =   =                ")
+    print("               =     =     =      =     =     =               ")
+    print("              =========   ==========   =========              ")
+    print("              = = = = =   = = == = =   = = = = =              ")
+    print("             =========== ============ ===========             ")
+    print("             =  = = =  = =  = == =  = =  = = =  =             ")
+    print("             =========== ============ ===========             ")
+    print("               =       Bandung Bondowoso,    =                ")
+    print("              ===       Roro Jonggrang,     ===               ")
+    print("               =      dan Candi Prambanan    =                 \n")
+    while True:
+        menu()
